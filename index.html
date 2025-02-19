@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Facts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+        h1 {
+            margin-bottom: 20px;
+        }
+        #fact {
+            font-size: 24px;
+            margin: 20px;
+            padding: 20px;
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            background-color: white;
+            transition: transform 0.5s;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: white;
+            background-color: #007BFF;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .animate {
+            transform: scale(1.1);
+        }
+        @media (max-width: 600px) {
+            #fact {
+                font-size: 20px;
+            }
+            button {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Fun Facts</h1>
+    <div id="fact">Click the button to see a fun fact!</div>
+    <button id="factButton">Get Random Fact</button>
+    <a id="twitterShare" href="#" target="_blank" style="display:none;">Share on Twitter</a>
+
+    <script>
+        const facts = [
+            "Bananas are berries, but strawberries aren't.",
+            "Honey never spoils.",
+            "A group of flamingos is called a 'flamboyance'.",
+            "Octopuses have three hearts.",
+            "Wombat poop is cube-shaped."
+        ];
+
+        const factDisplay = document.getElementById('fact');
+        const factButton = document.getElementById('factButton');
+        const twitterShare = document.getElementById('twitterShare');
+
+        factButton.addEventListener('click', () => {
+            const randomIndex = Math.floor(Math.random() * facts.length);
+            const randomFact = facts[randomIndex];
+
+            factDisplay.textContent = randomFact;
+            factDisplay.classList.add('animate');
+
+            // Remove animation class after animation ends
+            setTimeout(() => {
+                factDisplay.classList.remove('animate');
+            }, 500);
+
+            // Update Twitter share link
+            const tweetText = encodeURIComponent(randomFact);
+            twitterShare.href = `https://twitter.com/intent/tweet?text=${tweetText}`;
+            twitterShare.style.display = 'inline';
+        });
+    </script>
+
+</body>
+</html>
