@@ -3,91 +3,111 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cat Person Fun Facts</title>
+    <title>Dog Fun Facts</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
             margin: 0;
-            background-color: #f0f0f0;
+            padding: 20px;
+            background-color: #f4f4f4;
         }
 
         .container {
-            text-align: center;
-            background-color: #fff;
-            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .fact {
+            background: white;
             border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            max-width: 400px;
-            width: 90%;
+            padding: 20px;
+            margin: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s;
+            text-align: center;
         }
 
-        .fact-display {
-            margin: 20px 0;
-            font-size: 1.2em;
-            transition: opacity 0.5s ease-in-out;
+        .fact:hover {
+            transform: scale(1.05);
         }
 
-        .btn {
-            background-color: #007BFF;
+        .button {
+            padding: 10px 20px;
+            background-color: #007bff;
             color: white;
             border: none;
-            padding: 10px 20px;
-            margin: 5px;
             border-radius: 5px;
             cursor: pointer;
-            transition: background-color 0.3s ease;
+            transition: background-color 0.3s;
+            margin-top: 10px;
         }
 
-        .btn:hover {
+        .button:hover {
             background-color: #0056b3;
-        }
-
-        @media (max-width: 600px) {
-            .fact-display {
-                font-size: 1em;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>Cat Person Fun Facts</h1>
-        <div id="fact-display" class="fact-display">Click the button to see a fun fact!</div>
-        <button id="fact-button" class="btn">Show Random Fact</button>
-        <button id="twitter-button" class="btn">Share on Twitter</button>
+        <h1>Dog Fun Facts</h1>
+        <div class="fact" id="factDisplay">Click the button to get a fun fact about dogs!</div>
+        <button class="button" id="randomFactButton">Get Random Fact</button>
+        <a href="#" id="shareButton" class="button" style="display: none;">Share on Twitter</a>
     </div>
     <script>
-        const facts = [
-            "Cat people are often seen as more introverted than dog people.",
-            "Studies suggest that cat owners tend to be more intelligent than dog owners.",
-            "Cat people are usually more open-minded and creative.",
-            "Many cat owners report feeling less stressed and more relaxed around their cats.",
-            "Cat people often have a strong sense of independence, mirroring their feline friends.",
-            "Cat owners are more likely to be single than dog owners.",
-            "Cats are known to have a calming effect, which can benefit their owners' mental health.",
-            "Cat people often enjoy reading and spending time alone, reflecting their pets' solitary nature.",
-            "Many cat owners are passionate about animal welfare and rescue efforts.",
-            "Cat people tend to have a quirky sense of humor, often sharing funny cat memes and videos."
+        const funFacts = [
+            {
+                "id": 1,
+                "fact": "Dogs have an extraordinary sense of smell, which is 10,000 to 100,000 times more sensitive than humans."
+            },
+            {
+                "id": 2,
+                "fact": "The Basenji dog is known as the 'barkless dog' because it doesn't bark like other dogs; instead, it makes a unique yodel-like sound."
+            },
+            {
+                "id": 3,
+                "fact": "Dogs can understand up to 165 words, signs, and signals, and some can even learn more than 200 words."
+            },
+            {
+                "id": 4,
+                "fact": "The Labrador Retriever has been the most popular dog breed in the United States for over 25 years."
+            },
+            {
+                "id": 5,
+                "fact": "Dogs have sweat glands only in their paw pads, which is why they pant to cool down."
+            },
+            {
+                "id": 6,
+                "fact": "A Greyhound is the fastest dog breed and can run up to 45 miles per hour."
+            },
+            {
+                "id": 7,
+                "fact": "Dogs have been domesticated for over 15,000 years, making them one of the first domesticated animals."
+            },
+            {
+                "id": 8,
+                "fact": "The world's smallest dog breed is the Chihuahua, while the largest is the Great Dane."
+            },
+            {
+                "id": 9,
+                "fact": "Dogs can hear sounds at frequencies as high as 65,000 Hz, while humans can only hear up to about 20,000 Hz."
+            },
+            {
+                "id": 10,
+                "fact": "Dogs have unique nose prints, similar to human fingerprints, which can be used to identify them."
+            }
         ];
 
-        document.getElementById('fact-button').addEventListener('click', () => {
-            const randomIndex = Math.floor(Math.random() * facts.length);
-            const factDisplay = document.getElementById('fact-display');
-            factDisplay.style.opacity = 0;
-            setTimeout(() => {
-                factDisplay.textContent = facts[randomIndex];
-                factDisplay.style.opacity = 1;
-            }, 500);
-        });
+        document.getElementById('randomFactButton').addEventListener('click', function() {
+            const randomIndex = Math.floor(Math.random() * funFacts.length);
+            const randomFact = funFacts[randomIndex].fact;
+            document.getElementById('factDisplay').innerText = randomFact;
 
-        document.getElementById('twitter-button').addEventListener('click', () => {
-            const fact = document.getElementById('fact-display').textContent;
-            const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
-            window.open(twitterUrl, '_blank');
+            // Update the share button link
+            const shareButton = document.getElementById('shareButton');
+            shareButton.href = `https://twitter.com/intent/tweet?text=Check%20out%20this%20fun%20fact%20about%20dogs:%20${encodeURIComponent(randomFact)}`;
+            shareButton.style.display = 'inline-block'; // Show the share button
         });
     </script>
 </body>
