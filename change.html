@@ -28,7 +28,7 @@
         }
 
         .fact-container {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(248, 244, 244, 0.1);
             padding: 2rem;
             border-radius: 10px;
             backdrop-filter: blur(10px);
@@ -51,6 +51,7 @@
             cursor: pointer;
             font-size: 1rem;
             transition: background 0.3s ease;
+            margin-right: 10px;
         }
 
         button:hover {
@@ -64,6 +65,7 @@
         <div class="fact-container">
             <div id="factDisplay"></div>
             <button id="nextFact">Next Fact</button>
+            <a id="tweetFact" href="#" target="_blank">Share on Twitter</a>
         </div>
     </div>
 
@@ -78,12 +80,23 @@
             "A Greyhound can run faster than a Cheetah over long distances.",
             "Dogs curl up when they sleep to protect their vital organs.",
             "Some dogs can learn more than 1,000 words.",
-            "Newfoundlands have webbed feet and are excellent swimmers."
+            "Newfoundlands have webbed feet and are excellent swimmers.",
+            "Dogs can smell thousands of times better than humans.",
+            "Puppies are born deaf and blind.",
+            "Dogs dream just like humans.",
+            "A dog's sense of smell is its strongest sense.",
+            "The oldest recorded dog lived for 29 years.",
+            "Dogs can be trained to detect diseases like cancer.",
+            "The Labrador Retriever has been the most popular dog breed in the U.S. for decades.",
+            "Dogs wag their tails to communicate emotions.",
+            "Border Collies are considered the smartest dog breed.",
+            "Some dogs are allergic to humans!"
         ];
 
         let currentFactIndex = 0;
         const factDisplay = document.getElementById('factDisplay');
         const nextFactButton = document.getElementById('nextFact');
+        const tweetFactButton = document.getElementById('tweetFact');
 
         // Display initial fact
         displayFact(currentFactIndex);
@@ -95,7 +108,9 @@
         });
 
         function displayFact(index) {
-            factDisplay.innerHTML = `<p>${dogFacts[index]}</p>`;
+            const fact = dogFacts[index];
+            factDisplay.innerHTML = `<p>${fact}</p>`;
+            tweetFactButton.href = `https://twitter.com/intent/tweet?text=${encodeURIComponent(fact)}`;
         }
     </script>
 </body>
